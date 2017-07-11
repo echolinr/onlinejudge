@@ -1,32 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {Problem} from 'app/data-structure/problem';
+import { Component, OnInit, Inject } from '@angular/core';
+import { Problem } from 'app/data-structure/problem';
 
-const PROBLEM: Problem[] = [
-  {
-    id: 1,
-    name: "2sum",
-    desc: "this is desc",
-    difficulty: "super"
-  },
-    {
-    id: 2,
-    name: "2sum",
-    desc: "this is desc",
-    difficulty: "super"
-  },
-    {
-    id: 4,
-    name: "2sum",
-    desc: "this is desc",
-    difficulty: "super"
-  },
-    {
-    id: 5,
-    name: "2sum",
-    desc: "this is desc",
-    difficulty: "super"
-  },
-]
 
 
 @Component({
@@ -36,13 +10,13 @@ const PROBLEM: Problem[] = [
 })
 export class ProblemListComponent implements OnInit {
   problems: Problem[];
-  constructor() { }
+  constructor( @Inject('data') private dataService) { }
 
   ngOnInit() {
     this.getProblems();
   }
-  
-  getProblems(): void{
-    this.problems = PROBLEM;
+
+  getProblems(): void {
+    this.problems = this.dataService.getProblems();
   }
 }
